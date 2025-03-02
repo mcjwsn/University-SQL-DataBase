@@ -15,10 +15,10 @@ Repository contains solution to [task](https://github.com/mcjwsn/University-SQL-
  - `data_generator.py` -> data generator in python
  - `/diagram` -> .png and .svg diagram image
  - `/SQL Code`
- -   `DDL Code.sql` -> database ddl code
- -   `Functions.sql` -> database functions
- -   `Indexes and Permission.sql` -> database indexes and permissions
- -   `Procedures.sql` -> database procedures
- -   `Views.sql` -> databse views
- -   `Triggers.sql` -> database triggers
+   - `DDL Code.sql` -> database ddl code
+   - `Functions.sql` -> database functions
+   - `Indexes and Permission.sql` -> database indexes and permissions
+   - `Procedures.sql` -> database procedures
+   - `Views.sql` -> databse views
+   - `Triggers.sql` -> database triggers
 
