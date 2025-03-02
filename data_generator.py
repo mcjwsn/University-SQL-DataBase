@@ -31,16 +31,11 @@ def generate_data():
     # studies and subjects 
     studies = [] 
     study_names = [ 
-        "Informatyka", 
-        "Matematyka", 
-        "Fizyka", 
-        "Biotechnologia", 
-        "Inżynieria Mechaniczna", 
-        "Automatyka i Robotyka", 
-        "Zarządzanie", 
-        "Ekonomia", 
-        "Psychologia", 
-        "Prawo" 
+        "Informatyka","Matematyka", 
+        "Fizyka","Biotechnologia", 
+        "Inżynieria Mechaniczna","Automatyka i Robotyka", 
+        "Zarządzanie","Ekonomia", 
+        "Psychologia","Prawo" 
     ] 
     subjects = [] 
     subjects_names = [ 
@@ -53,8 +48,7 @@ def generate_data():
         ["Podstawy Zarządzania", "Marketing", "Zarządzanie Projektami", "Finanse Przedsiębiorstw", "Zarządzanie Zasobami Ludzkimi", "Analiza Strategiczna"], 
         ["Mikroekonomia", "Makroekonomia", "Ekonometria", "Teoria Gier", "Polityka Ekonomiczna", "Finanse Publiczne"], 
         ["Psychologia Społeczna", "Psychologia Rozwojowa", "Psychopatologia", "Psychometria", "Kliniczne Podstawy Diagnozy", "Neuropsychologia"], 
-        ["Prawo Cywilne", "Prawo Karne", "Prawo Administracyjne", "Prawo Handlowe", "Postępowanie Cywilne", "Postępowanie Karne"] 
-    ] 
+        ["Prawo Cywilne", "Prawo Karne", "Prawo Administracyjne", "Prawo Handlowe", "Postępowanie Cywilne", "Postępowanie Karne"] ] 
     all_orders = [] 
 
     # 1. Employees 
@@ -75,7 +69,6 @@ def generate_data():
     translators_id = [e["EmployeeID"] for e in employees if e["EmployeeType"] == 7] 
     coordinator_id = [e["EmployeeID"] for e in employees if e["EmployeeType"] == 3] 
     teacher_id = [e["EmployeeID"] for e in employees if e["EmployeeType"] == 3] 
- 
     # 24. Studies 
     total_students = 0 
     studies_id_limit = [] 
@@ -94,17 +87,13 @@ def generate_data():
     print(total_students) 
     print(studies_id_limit) 
     print(sum(studies_id_limit)) 
- 
     student_subject_id = [] 
     s = 1 
     for i in range(1, len(studies_id_limit)+1): 
         for j in range(0, studies_id_limit[i-1]): 
             student_subject_id.append([i, 10+i, 20+i, 30+i, 40+i, 50+i]) 
             all_orders.append(('s', i, s, studies_fee[i-1], random_date('2024-08-01' , '2024-09-01'), random_date('2024-09-01' , '2024-09-25'))) 
-            s += 1 
-    #print(student_subject_id) 
-    print(s) 
- 
+            s += 1  
     # 15. Subjects 
     for subject_id in range(0, len(study_names) * 6):  # Sequential IDs for Subjects 
         i = subject_id // 10 
@@ -127,8 +116,7 @@ def generate_data():
     } 
     employee_types = [{"EmployeeType": i, "EmployeeTypeName": name} for i, name in employee_type_name.items()] 
  
- 
-    # 3. Languages (ok) 
+    # 3. Languages 
     languages = [ 
         {"LanguageID": 1, "LanguageName": "English"}, 
         {"LanguageID": 2, "LanguageName": "German"}, 
@@ -144,26 +132,16 @@ def generate_data():
     # 4. Courses 
     courses = [] 
     course_names = [ 
-        "Podstawy Programowania", 
-        "Zaawansowane Algorytmy i Struktury Danych", 
-        "Analiza Matematyczna w Praktyce", 
-        "Biotechnologia w Medycynie", 
-        "Fizyka Kwantowa dla Inżynierów", 
-        "Ekonomia Środowiskowa", 
-        "Zarządzanie Innowacjami", 
-        "Psychologia Motywacji i Decyzji", 
-        "Podstawy Prawa Unijnego", 
-        "Inżynieria Materiałowa", 
-        "Projektowanie Robotów Mobilnych", 
-        "Sieci Neuronowe i Uczenie Maszynowe", 
-        "Marketing Cyfrowy i Media Społecznościowe", 
-        "Systemy Informacyjne w Zarządzaniu", 
-        "Bioinformatyka i Analiza Danych Genetycznych", 
-        "Astrofizyka i Eksploracja Kosmosu", 
-        "Zarządzanie Ryzykiem Finansowym", 
-        "Komunikacja Międzykulturowa w Biznesie", 
-        "Prawo Ochrony Własności Intelektualnej", 
-        "Etyka w Nowoczesnej Technologii" 
+        "Podstawy Programowania","Zaawansowane Algorytmy i Struktury Danych", 
+        "Analiza Matematyczna w Praktyce", "Biotechnologia w Medycynie", 
+        "Fizyka Kwantowa dla Inżynierów", "Ekonomia Środowiskowa", 
+        "Zarządzanie Innowacjami", "Psychologia Motywacji i Decyzji", 
+        "Podstawy Prawa Unijnego", "Inżynieria Materiałowa", 
+        "Projektowanie Robotów Mobilnych", "Sieci Neuronowe i Uczenie Maszynowe", 
+        "Marketing Cyfrowy i Media Społecznościowe", "Systemy Informacyjne w Zarządzaniu", 
+        "Bioinformatyka i Analiza Danych Genetycznych", "Astrofizyka i Eksploracja Kosmosu", 
+        "Zarządzanie Ryzykiem Finansowym", "Komunikacja Międzykulturowa w Biznesie", 
+        "Prawo Ochrony Własności Intelektualnej", "Etyka w Nowoczesnej Technologii" 
     ] 
     course_types = ["online-sync", "hybrid", "in-person", "online-async"]  # Lista możliwych typów kursów 
  
@@ -183,7 +161,6 @@ def generate_data():
             "Limit": limit }) 
         course_info.append(courses[i-1]["CoursePrice"]) 
         course_limit.append(limit) 
- 
     # 5. CourseModules  
     course_modules = [] 
     for i in range(0, len(course_names)*3):  # Generowanie 200 modułów 
@@ -191,7 +168,6 @@ def generate_data():
             "ModuleID": i+1,  # Ciągły identyfikator modułu 
             "CourseID": i%len(course_names)+1, 
             "LanguageID": random.choices([k for k in range(1,7)], weights=language_weights, k=1)[0] }) 
- 
     # 6. Students 
     students = [] 
     for i in range(1, total_students+1):  # Generowanie 1000 studentów 
@@ -209,7 +185,6 @@ def generate_data():
             "Phone": fake.phone_number() 
         }) 
     print(len(students)) 
- 
     """ DODATKOWI STUDENCI """ 
     for i in range(total_students+1, total_students*len(years)+1):  # Generowanie 1000 studentów 
         first_name = fake.first_name() 
@@ -249,8 +224,7 @@ def generate_data():
             "StudyCongressID": study_congress_id, 
             "StudiesID": (study_congress_id-1)%10 + 1, 
             "StartDate": date, 
-            "EndDate": date2 
-        }) 
+            "EndDate": date2  }) 
         lan_tra = random.choices( 
             [{"TranslatorID": None, "LanguageID": 6, "EmployeeID": None}, random.choice(translators)], 
             weights=[0.8, 0.2], k=1) 
@@ -271,8 +245,7 @@ def generate_data():
             "Limit": limit, 
             "Room": fake.word(), 
             "Video": fake.url() + str(study_congress_id), 
-            "Link": fake.url() + str(study_congress_id) 
-        }) 
+            "Link": fake.url() + str(study_congress_id) }) 
         meeting_info.append([study_meetings[study_congress_id - 1]["MeetingPrice"], study_meetings[study_congress_id - 1]["Date"]]) 
  
     # 13. StudyMeeting do poprawy 
