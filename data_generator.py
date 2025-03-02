@@ -7,14 +7,11 @@ import csv
  
 # Initialize Faker with Polish locale 
 fake = Faker("pl_PL") 
- 
- 
 # Helper function to generate random data 
 def random_date(start_date, end_date): 
     start_date = datetime.datetime.strptime(start_date, '%Y-%m-%d').date() 
     end_date = datetime.datetime.strptime(end_date, '%Y-%m-%d').date() 
     return fake.date_between(start_date=start_date, end_date=end_date) 
- 
 # Generate data for each table (ok) 
 def generate_data(): 
     # ALL NEEDED VARIABLES 
@@ -245,7 +242,7 @@ def generate_data():
         }) 
     """ DODATKOWI STUDENCI """ 
  
-    # 16. Translators do poprawy 
+    # 16. Translators
     translators = [] 
     for t_id in range(1, len(translators_id) + 1):  # Sequential IDs for Translators 
         translators.append({ 
@@ -253,13 +250,8 @@ def generate_data():
             "LanguageID": fake.random_int(min=1, max=5), 
             "EmployeeID": translators_id[t_id - 1] 
         }) 
-    #print(len(translators)) 
-    #print(len(translators_id)) 
-    #print(translators) 
- 
     # 12,5 StudyCongress 
     study_meetings = [] 
-57 
  
     meeting_names = ["nauka na kolokwium", "nauka na egzamin", "nauka na poprawke"] 
     meetings = 300 
@@ -346,8 +338,6 @@ def generate_data():
             "CourseDate": course_date, 
             "ModuleType": random.choice(module_types) 
         }) 
-    #print(module_limits) 
-    #print(len(module_limits)) 
  
     # 17. Webinars 
     webinars = [] 
@@ -394,10 +384,7 @@ def generate_data():
         }) 
         webinar_info.append([webinars[webinar_id-1]["WebinarPrice"], webinar_date, webinar_date + datetime.timedelta(days=30)]) 
  
-    #for w in webinars: 
-58 
  
-    #    print(w) 
     # 18. StudentCourses 
     student_course_attendance = [0]*len(course_names) 
     student_courses_set = set() 
@@ -484,7 +471,6 @@ def generate_data():
     current_meeting = [0]*meetings 
     student_meeting_attendance_set = set() 
     meeting_orders = [[]]*meetings 
-    #print(student_subject_id) 
     #StudyCongressy 
  
     for std_id in range(1, total_students+1): 
@@ -531,7 +517,6 @@ def generate_data():
     student_meeting_attendance_set = list(student_meeting_attendance_set) 
  
     student_meeting_attendance = [] 
-59 
  
     for one, two, three in student_meeting_attendance_set:  # Sequential IDs for MeetingDetails 
         student_meeting_attendance.append({ 
@@ -585,11 +570,6 @@ def generate_data():
             "EndDate": start_date + datetime.timedelta(days=14), 
             "InternshipStatus": in_st 
         }) 
-    #print(internships[14]) 
- 
-    # ORDERY OSTATECZNE ROZLICZENIE 
-    # typ 'w' - Webinar 'c' - Kurs 's' - Studies 'm' - meeting 
- 
     print(len(all_orders)) 
     orderStatus = ["Paid", "Unpaid", "Canceled"] 
     orders = [] 
@@ -648,12 +628,6 @@ def generate_data():
             }) 
  
         c_id += 1 
- 
-        #if paying_date: 
-        #    if paying_date > datetime.date(2025, 1, 14): 
-        #        print(order_data) 
- 
- 
  
     """ 
     # 7. Orders 
