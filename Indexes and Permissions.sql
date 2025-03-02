@@ -46,6 +46,9 @@ CREATE INDEX idx_subject_grades_subject ON dbo.StudentSubjectGrades(SubjectID); 
 CREATE INDEX idx_subject_attendance_student ON dbo.SubjectStudentAttendance(StudentID); 
 CREATE INDEX idx_subject_attendance_subject ON dbo.SubjectStudentAttendance(SubjectID); -- Indeksy dla kluczy obcych w tabeli StudyCongress 
 CREATE INDEX idx_study_congress_studies ON dbo.StudyCongress(StudiesID); 
+
+
+
 --2. Indeksy ram czasowych i cen 
 -- Ramy czasowe modułu  
 CREATE INDEX StudyModule_Time ON ModuleDetails (CourseDate, DurationTime) 
@@ -58,12 +61,13 @@ CREATE INDEX StudiesPrice ON Studies(StudiesFee) – Cena za Kurs
 CREATE INDEX CoursePrice ON Courses(CoursePrice) 
 
 -- Permissions
- -- Gość (Użytkownik niezarejestrowany) 
+-- Gość (Użytkownik niezarejestrowany) 
 CREATE ROLE guest; 
 GRANT EXECUTE ON AddStudent TO guest; 
 GRANT SELECT ON FUTURE_EVENTS_STATS TO guest; 
 GRANT SELECT ON FUTURE_WEBINAR_STATS TO guest; 
 GRANT SELECT ON FUTURE_MODULE_STATS TO guest;
+
  -- Uczestnik kursu (student, uczestnik kursu, uczestnik webinaru, uczestnik spotkania studyjnego) 
 CREATE ROLE student; 
 GRANT guest TO student; 
@@ -85,12 +89,14 @@ GRANT EXECUTE ON GetStudentTimetableFromDate TO student;
 GRANT EXECUTE ON CancelOrder TO student; 
 GRANT EXECUTE ON GetFutureMeetingStats TO student; 
 GRANT EXECUTE ON PayOrder TO student;
+
  -- Administrator 
 CREATE ROLE admin;
  --GRANT ALL PRIVILEGES ON u_mwisniew.dbo to admin 
 GRANT ALL PRIVILEGES ON ALL TABLES TO admin; 
 GRANT EXECUTE ON ALL FUNCTIONS TO admin; 
 GRANT EXECUTE ON ALL PROCEDURES TO admin;
+
  -- Dyrektor szkoły 
 CREATE ROLE director; 
 GRANT EXECUTE ON GetFinancialReport TO director; 
@@ -126,6 +132,7 @@ GRANT EXECUTE ON GetStudentTimetable TO director;
 GRANT EXECUTE ON GetStudentTimetableFromDate TO director; 
 GRANT EXECUTE ON CancelOrder TO director; 
 GRANT EXECUTE ON GetFutureMeetingStats TO director; 
+
 -- Koordynator kursu 
 CREATE ROLE course_coordinator; 
 GRANT EXECUTE ON AddCourse TO course_coordinator; 
@@ -135,6 +142,7 @@ GRANT SELECT ON COMPLETED_MODULES_ATTENDANCE TO course_coordinator;
 GRANT SELECT ON FUTURE_MODULE_STATS TO course_coordinator; 
 GRANT EXECUTE ON GetCourseAttendanceForStudent TO course_coordinator; 
 GRANT EXECUTE ON GetStudentAttendanceSummary TO course_coordinator;
+
  -- Koordynator studiów 
 CREATE ROLE studies_coordinator; 
 GRANT EXECUTE ON AddStudy TO studies_coordinator; 
@@ -146,6 +154,7 @@ GRANT EXECUTE GetSubjectAttendanceForStudent TO studies_coordinator;
 GRANT EXECUTE AddStudentMeetingAttendance TO studies_coordinator; 
 GRANT EXECUTE AddStudentSubjectGrade TO studies_coordinator; 
 GRANT EXECUTE AddStudyMeeting TO studies_coordinator;
+
  -- Wykładowca 
 CREATE ROLE lecturer; 
 GRANT EXECUTE ON AddWebinar TO lecturer; 
@@ -159,11 +168,13 @@ GRANT EXECUTE GetSubjectAttendanceForStudent TO lecturer;
 GRANT EXECUTE AddStudentMeetingAttendance TO lecturer; 
 GRANT EXECUTE AddStudentSubjectGrade TO lecturer; 
 GRANT EXECUTE ON GetFutureMeetingStats TO lecturer;
+
  -- Prowadzący praktyki 
 CREATE ROLE internship_supervisor; 
 GRANT EXECUTE ON AddInternship TO internship_supervisor; 
 GRANT SELECT ON COMPLETED_MODULES_ATTENDANCE TO internship_supervisor; 
 GRANT SELECT ON FUTURE_MODULE_STATS TO internship_supervisor;
+
  -- Księgowy 
 CREATE ROLE accountant; 
 GRANT SELECT ON FINANCIAL_REPORT TO accountant; 
@@ -177,9 +188,42 @@ GRANT EXECUTE ON GetFinancialReport TO accountant;
 GRANT EXECUTE ON GetDetailedFinancialReport TO accountant; 
 GRANT EXECUTE ON GetDetailedFinancialReport TO accountant; 
 GRANT SELECT ON ORDERS_SUMMARY TO accountant;
+
  -- Tłumacz 
 CREATE ROLE translator; 
 GRANT EXECUTE ON CheckTranslatorLanguage TO translator; 
 GRANT SELECT ON BILOCATION_LIST TO translator; 
 GRANT SELECT ON FUTURE_WEBINAR_STATS TO translator; 
 GRANT SELECT ON FUTURE_MEETING_STATS TO translator;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
