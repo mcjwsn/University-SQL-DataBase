@@ -8,5 +8,5 @@ Konrad Szymański [Konradajew](https://github.com/Konradajew)
 
 Kajetan Frątczak [KajetanFratczak](https://github.com/KajetanFratczak)
 
-## Repository containts:
+## Repository contains:
 
