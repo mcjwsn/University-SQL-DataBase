@@ -1,10 +1,8 @@
 from datetime import timedelta 
- 
 from faker import Faker 
 import random 
 import datetime 
 import csv 
- 
 # Initialize Faker with Polish locale 
 fake = Faker("pl_PL") 
 # Helper function to generate random data 
@@ -26,12 +24,10 @@ def generate_data():
         ('2023-09-26', '2024-07-01', '2024-06-24') 
     ] 
     current_year = ('2024-09-26', '2025-07-01', '2025-06-24', '2025-01-21') 
- 
     year_start_date = '2024-09-26' 
     year_end_date = '2025-07-01' 
     final_grade_start_date = '2025-06-24' 
     current_date = '2025-01-23' 
- 
     # studies and subjects 
     studies = [] 
     study_names = [ 
@@ -45,8 +41,7 @@ def generate_data():
         "Ekonomia", 
         "Psychologia", 
         "Prawo" 
-    ]  # List of realistic study names 
- 
+    ] 
     subjects = [] 
     subjects_names = [ 
         ["Algorytmy i Struktury Danych", "Programowanie Obiektowe", "Systemy Operacyjne", "Bazy Danych", "Sieci Komputerowe", "Sztuczna Inteligencja"], 
@@ -60,18 +55,15 @@ def generate_data():
         ["Psychologia Społeczna", "Psychologia Rozwojowa", "Psychopatologia", "Psychometria", "Kliniczne Podstawy Diagnozy", "Neuropsychologia"], 
         ["Prawo Cywilne", "Prawo Karne", "Prawo Administracyjne", "Prawo Handlowe", "Postępowanie Cywilne", "Postępowanie Karne"] 
     ] 
- 
     all_orders = [] 
- 
+
     # 1. Employees 
     employees = [] 
- 
     for employee_id in range(1, 101):  # ID od 1 do 100 
         first_name = fake.first_name() 
         last_name = fake.last_name() 
         email = f"{first_name.lower()}.{last_name.lower()}@example.com".replace(' ', '').replace("'", 
                                                                                                  "")  # Tworzenie maila na podstawie imienia i nazwiska 
- 
         employees.append({ 
             "EmployeeID": employee_id, 
             "FirstName": first_name, 
@@ -80,7 +72,6 @@ def generate_data():
             "Phone": fake.phone_number(), 
             "EmployeeType": random.randint(1, 7)  # Typ pracownika od 1 do 7 
         }) 
- 
     translators_id = [e["EmployeeID"] for e in employees if e["EmployeeType"] == 7] 
     coordinator_id = [e["EmployeeID"] for e in employees if e["EmployeeType"] == 3] 
     teacher_id = [e["EmployeeID"] for e in employees if e["EmployeeType"] == 3] 
@@ -120,8 +111,6 @@ def generate_data():
         subjects.append({ 
             "SubjectID": subject_id + 1, 
             "StudiesID": subject_id % 10 + 1,  # Assuming 1-to-1 relationship with StudiesID 
-56 
- 
             "CoordinatorID": random.choice(coordinator_id),  # Assuming 1-to-1 relationship with CoordinatorID 
             "SubjectName": subjects_names[subject_id % 10][i]  # Random selection from the list 
         }) 
@@ -151,7 +140,6 @@ def generate_data():
     language_weights = [0.04, 0.04, 0.04, 0.04, 0.04, 0.80] 
     attendance_weights = [0.90, 0.10] 
     attendance = [1, 0] 
- 
  
     # 4. Courses 
     courses = [] 
@@ -192,22 +180,19 @@ def generate_data():
             "CoursePrice": round(random.uniform(100, 1000), 2), 
             "CourseCoordinatorID": random.choice(coordinator_id), 
             "CourseType": course_type, 
-            "Limit": limit 
-        }) 
+            "Limit": limit }) 
         course_info.append(courses[i-1]["CoursePrice"]) 
         course_limit.append(limit) 
  
- 
-    # 5. CourseModules (ok) 
+    # 5. CourseModules  
     course_modules = [] 
     for i in range(0, len(course_names)*3):  # Generowanie 200 modułów 
         course_modules.append({ 
             "ModuleID": i+1,  # Ciągły identyfikator modułu 
             "CourseID": i%len(course_names)+1, 
-            "LanguageID": random.choices([k for k in range(1,7)], weights=language_weights, k=1)[0]  # Losowy LanguageID z zakresu 1-5 
-        }) 
+            "LanguageID": random.choices([k for k in range(1,7)], weights=language_weights, k=1)[0] }) 
  
-    # 6. Students (ok) 
+    # 6. Students 
     students = [] 
     for i in range(1, total_students+1):  # Generowanie 1000 studentów 
         first_name = fake.first_name() 
@@ -241,7 +226,6 @@ def generate_data():
             "Phone": fake.phone_number() 
         }) 
     """ DODATKOWI STUDENCI """ 
- 
     # 16. Translators
     translators = [] 
     for t_id in range(1, len(translators_id) + 1):  # Sequential IDs for Translators 
@@ -252,7 +236,6 @@ def generate_data():
         }) 
     # 12,5 StudyCongress 
     study_meetings = [] 
- 
     meeting_names = ["nauka na kolokwium", "nauka na egzamin", "nauka na poprawke"] 
     meetings = 300 
     meeting_limits = [0] * meetings 
@@ -293,7 +276,6 @@ def generate_data():
         meeting_info.append([study_meetings[study_congress_id - 1]["MeetingPrice"], study_meetings[study_congress_id - 1]["Date"]]) 
  
     # 13. StudyMeeting do poprawy 
- 
     for meeting_id in range(61, meetings + 1):  # Sequential IDs for StudyMeetings 
         lan_tra = random.choices([{ "TranslatorID": None, "LanguageID": 6, "EmployeeID": None}, random.choice(translators)], weights=[0.8, 0.2], k=1) 
         limit = random.choices([35, 50, 60])[0] 
@@ -313,12 +295,8 @@ def generate_data():
             "Limit": limit, 
             "Room": fake.word(), 
             "Video": fake.url()+str(meeting_id), 
-            "Link": fake.url()+str(meeting_id) 
-        }) 
+            "Link": fake.url()+str(meeting_id) }) 
         meeting_info.append([study_meetings[meeting_id-1]["MeetingPrice"], study_meetings[meeting_id-1]["Date"]]) 
-    #for m in study_meetings: 
-    #    print(m) 
- 
  
     # 14. ModulesDetails 
     module_types = ["online-sync", "hybrid", "in-person", "online-async"] 
@@ -336,8 +314,7 @@ def generate_data():
             "DurationTime": random.choice([30, 45, 60, 90]), 
             "AccessEndDate": course_date + datetime.timedelta(days=30), 
             "CourseDate": course_date, 
-            "ModuleType": random.choice(module_types) 
-        }) 
+            "ModuleType": random.choice(module_types) }) 
  
     # 17. Webinars 
     webinars = [] 
@@ -361,9 +338,7 @@ def generate_data():
         "Zaawansowane Techniki Negocjacyjne", 
         "Przyszłość E-commerce: Personalizacja i AI", 
         "Rozwój Kompetencji Miękkich w Pracy Zdalnej", 
-        "Zarządzanie Ryzykiem w Świecie Dynamicznych Zmian" 
-    ] 
- 
+        "Zarządzanie Ryzykiem w Świecie Dynamicznych Zmian" ] 
     webinar_info = [] 
     for webinar_id in range(1, len(webinar_names)+1):  # Sequential IDs for Webinars 
         lan_tra = random.choices( 
@@ -384,7 +359,6 @@ def generate_data():
         }) 
         webinar_info.append([webinars[webinar_id-1]["WebinarPrice"], webinar_date, webinar_date + datetime.timedelta(days=30)]) 
  
- 
     # 18. StudentCourses 
     student_course_attendance = [0]*len(course_names) 
     student_courses_set = set() 
@@ -396,8 +370,6 @@ def generate_data():
             all_orders.append(('c', c_id, std_id, course_info[c_id - 1], random_date('2024-08-01', '2024-09-01'), 
                            random_date('2024-09-01', '2024-09-25'))) 
             student_course_attendance[c_id - 1] += 1 
-    # ordery 
- 
     student_courses_set = list(student_courses_set) 
     student_courses = [] 
     for record in student_courses_set:  # Sequential IDs for StudentCourses 
@@ -408,13 +380,11 @@ def generate_data():
  
     # 19. StudentModulesAttendance 
     student_modules_attendance_set = set() 
-    #print(current_attendance) 
     for course_id, std_id in student_courses_set: 
         for i in range(0, 3): 
             at = random.choices(['Present', 'Absent', 'Late'], weights=[0.90, 0.05, 0.05], k=1)[0] 
  
             student_modules_attendance_set.add((i*len(course_names) + course_id, std_id, at)) 
- 
     # forsowany jest absent jeżeli attendance modułu przekroczy limit 
     student_modules_attendance_set = list(student_modules_attendance_set) 
     student_modules_attendance = [] 
@@ -435,10 +405,8 @@ def generate_data():
                 "StudiesGradeID": i+1, 
                 "StudentID": cur, 
                 "FinalGrade": fake.random_int(min=2, max=5), 
-                "FinalGradeDate": random_date(final_grade_start_date, year_end_date) 
-            }) 
- 
-    # print(len(student_subject_id)) 
+                "FinalGradeDate": random_date(final_grade_start_date, year_end_date)  }) 
+
     # 21. StudentSubjectGrades 
     student_subject_grades = [] 
     for subject_grade_id in range(1, total_students+1):  # Sequential IDs for StudentSubjectGrades 
@@ -446,8 +414,7 @@ def generate_data():
             student_subject_grades.append({ 
                 "SubjectID": student_subject_id[subject_grade_id-1][subject-1], 
                 "Grade": fake.random_int(min=2, max=5), 
-                "StudentID": subject_grade_id 
-            }) 
+                "StudentID": subject_grade_id  }) 
  
     # 22. StudentWebinars 
     student_webinars_set = set() 
@@ -463,16 +430,13 @@ def generate_data():
     for one, two in student_webinars_set: 
         student_webinars.append({ 
             "WebinarID": one, 
-            "StudentID": two 
-        }) 
+            "StudentID": two }) 
  
     # 23. StudentMeetingAttendance 
- 
     current_meeting = [0]*meetings 
     student_meeting_attendance_set = set() 
     meeting_orders = [[]]*meetings 
     #StudyCongressy 
- 
     for std_id in range(1, total_students+1): 
         current_student_meetings = 0 
         for i in range(1, 61): 
@@ -487,8 +451,6 @@ def generate_data():
                 order_date = random_date('2024-09-25', meeting_info[i-1][1].strftime('%Y-%m-%d')) 
                 meeting_orders[i-1] = ('m', i, std_id, meeting_info[i-1][0] ,order_date, random_date(order_date.strftime('%Y-%m-%d'), (order_date+datetime.timedelta(days=30)).strftime('%Y-%m-%d'))) 
  
- 
-    # meetingi_regularne 
     for std_id in range(1, total_students+1): 
         current_student_meetings = 0 
         for i in range(61, meetings+1): 
@@ -496,12 +458,8 @@ def generate_data():
                 attendance = random.choices(['Present', 'Absent', 'Late'], weights=[0.9, 0.05, 0.05], k=1)[0] 
                 if meeting_info[i-1][1] > datetime.date(year=2025, month=1, day=23): 
                     attendance = 'Signed' 
- 
                 student_meeting_attendance_set.add(( 
-                    i, 
-                    std_id, 
-                    attendance 
-                )) 
+                    i, std_id, attendance )) 
                 current_meeting[i - 1] += 1 
                 current_student_meetings += 1 
                 #order_date = random_date('2024-09-25', meeting_info[i-1][1].strftime('%Y-%m-%d')) 
@@ -509,21 +467,17 @@ def generate_data():
                 meeting_orders[i-1] = ('m', i, std_id, meeting_info[i-1][0] ,order_date, random_date(order_date.strftime('%Y-%m-%d'), (order_date+datetime.timedelta(days=30)).strftime('%Y-%m-%d'))) 
             if current_student_meetings > 36: 
                 break 
- 
     for r in meeting_orders: 
         if len(r) > 5: 
             all_orders.append(r) 
  
     student_meeting_attendance_set = list(student_meeting_attendance_set) 
- 
     student_meeting_attendance = [] 
- 
     for one, two, three in student_meeting_attendance_set:  # Sequential IDs for MeetingDetails 
         student_meeting_attendance.append({ 
             "MeetingID": one, 
             "StudentID": two, 
-            "Attendance": three 
-        }) 
+            "Attendance": three }) 
  
     # 25. SubjectStudentAttendance 
     subject_student_attendance = [] 
@@ -537,9 +491,7 @@ def generate_data():
                     random_date(year_start_date, year_end_date), 
                     #random.choices(['Present', 'Absent', 'Late'], weights=[0.9, 0.05, 0.05], k=1)[0] 
                     )) 
- 
     subject_student_attendance_set = list(subject_student_attendance_set) 
- 
     for one, two, three in subject_student_attendance_set: 
         attendance = random.choices(['Present', 'Absent', 'Late'], weights=[0.9, 0.05, 0.05], k=1)[0] 
         if three > datetime.date(year=2025, month=1, day= 23): 
@@ -548,9 +500,7 @@ def generate_data():
             "StudentID": one, 
             "SubjectID": two, 
             "Date": three, 
-            "Attendance": attendance 
-        }) 
- 
+            "Attendance": attendance  }) 
     # 26. Internships 
     internships = [] 
     # internshipy są tylko do obecnego momemntu 
@@ -626,10 +576,8 @@ def generate_data():
                 "WebinarID": order_data[1], 
                 "Price": order_data[3] 
             }) 
- 
         c_id += 1 
  
-    """ 
     # 7. Orders 
     orders = [] 
     for i in range(1, 201):  # Generowanie 100 zamówień 
@@ -639,9 +587,6 @@ def generate_data():
             "OrderStatus": random.choice(orderStatus), 
             "OrderDate": random_date(year_start_date, current_date) 
         }) 
-    # print(orders) 
- 
-60 
  
     # 8. OrderDetails (do poprawy) 
     order_details = [] 
@@ -649,8 +594,7 @@ def generate_data():
         order_details.append({ 
             "OrderDetailsID": i,  # Ciągły identyfikator OrderDetails 
             "OrderID": random.randint(1, 100),  # Losowy OrderID z zakresu 1-100 
-            "PayingDate": random_date(year_start_date, current_date) 
-        }) 
+            "PayingDate": random_date(year_start_date, current_date)  }) 
  
     # 9. OrderedCourses ok 
     ordered_courses = [] 
@@ -687,7 +631,6 @@ def generate_data():
             "WebinarID": random.randint(1, 50),  # Losowy WebinarID z zakresu 1-50 
             "Price": round(random.uniform(100, 1000), 2) 
         }) 
-    """ 
     # Return all the generated data 
     return { 
         "employees": employees, 
@@ -718,20 +661,16 @@ def generate_data():
         "internships": internships, 
         "study_congress": study_congress 
     } 
- 
- 
 # Generate the data 
 data = generate_data() 
- 
- 
+
 def save_to_csv(data, filename): 
     keys = data[0].keys() 
     with open(filename, 'w', newline='', encoding='utf-8') as output_file: 
         dict_writer = csv.DictWriter(output_file, fieldnames=keys) 
         dict_writer.writeheader() 
         dict_writer.writerows(data) 
- 
- 
+
 def save_all_data_to_csv(data): 
     save_to_csv(data["employees"], "Employees.csv") 
     save_to_csv(data["employee_types"], "EmployeeTypes.csv") 
@@ -760,12 +699,9 @@ def save_all_data_to_csv(data):
     save_to_csv(data["subject_student_attendance"], "SubjectStudentAttendance.csv") 
     save_to_csv(data["internships"], "Internships.csv") 
     save_to_csv(data["study_congress"], "StudyCongress.csv") 
- 
 # Call the function to save all data to CSV files 
 save_all_data_to_csv(data) 
- 
 def save_to_csv2(data): 
     save_to_csv(data["internships"], "Internships.csv") 
- 
 # save_to_csv2(data) 
 print("bazy") 
