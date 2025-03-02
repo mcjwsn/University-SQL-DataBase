@@ -8,7 +8,7 @@ Konrad Szymański [Konradajew](https://github.com/Konradajew)
 
 Kajetan Frątczak [KajetanFratczak](https://github.com/KajetanFratczak)
 
-Repository contains solution to task `task description.pdf`
+Repository contains solution to [task](https://github.com/mcjwsn/University-SQL-DataBase/blob/main/task%20description.pdf)
 
 ### Files description:
  - `/raports` -> raports from steps of database development
