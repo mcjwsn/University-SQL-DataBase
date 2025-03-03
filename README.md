@@ -6,7 +6,7 @@ Maciej Wiśniewski [mcjwsn](https://github.com/mcjwsn)
 
 Konrad Szymański [Konradajew](https://github.com/Konradajew)
 
-Kajetan Frątczak [KajetanFratczak](https://github.com/KajetanFratczak)
+Kajetan Frątczak  [KajetanFratczak](https://github.com/KajetanFratczak)
 
 Repository contains solution to [task](https://github.com/mcjwsn/University-SQL-DataBase/blob/main/task%20description.pdf)
 
