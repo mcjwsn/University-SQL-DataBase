@@ -1,4 +1,4 @@
-# University-MSSQL-DataBase
+# University-DataBase
 
 ## SQL DataBase Project implemented in team:
 
@@ -22,3 +22,4 @@ Repository contains solution to [task](https://github.com/mcjwsn/University-SQL-
    - `Views.sql` -> databse views
    - `Triggers.sql` -> database triggers
 
+Project implemented in MSSQLServer language
