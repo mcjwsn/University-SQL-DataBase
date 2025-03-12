@@ -1,25 +1,31 @@
-# University-DataBase
+# :mortar_board: University-DataBase
 
 ## SQL DataBase Project implemented in team:
 
-Maciej Wiśniewski [mcjwsn](https://github.com/mcjwsn)
+:man_technologist: Maciej Wiśniewski [mcjwsn](https://github.com/mcjwsn)
 
-Konrad Szymański [Konradajew](https://github.com/Konradajew)  
+:man_technologist: Konrad Szymański [Konradajew](https://github.com/Konradajew)  
 
-Kajetan Frątczak [KajetanFratczak](https://github.com/KajetanFratczak)
+:man_technologist: Kajetan Frątczak [KajetanFratczak](https://github.com/KajetanFratczak)
 
-Repository contains solution to [task](https://github.com/mcjwsn/University-SQL-DataBase/blob/main/task%20description.pdf)
+:page_facing_up: Task description: [View PDF](https://github.com/mcjwsn/University-SQL-DataBase/blob/main/task%20description.pdf)
 
-### Files description:
- - `/raports` -> raports from steps of database development
- - `data_generator.py` -> data generator in python
- - `/diagram` -> .png and .svg diagram image
- - `/SQL Code`
-   - `DDL Code.sql` -> database ddl code
-   - `Functions.sql` -> database functions
-   - `Indexes and Permission.sql` -> database indexes and permissions
-   - `Procedures.sql` -> database procedures
-   - `Views.sql` -> databse views
-   - `Triggers.sql` -> database triggers
+### :file_folder: Project Structure  
 
-Project implemented in MSSQLServer language
+:file_folder: **`/raports`** – Reports from database development steps  
+
+:file_folder: **`/diagram`** – Database schema (.png & .svg)  
+
+:file_folder: **`/SQL Code`** – SQL scripts:  
+- :scroll: **`DDL Code.sql`** – Database schema (DDL)  
+- :scroll: **`Functions.sql`** – Defined functions  
+- :scroll: **`Indexes and Permission.sql`** – Indexes & permissions  
+- :scroll: **`Procedures.sql`** – Stored procedures  
+- :scroll: **`Views.sql`** – Database views  
+- :scroll: **`Triggers.sql`** – Triggers  
+
+:snake: **`data_generator.py`** – Python script for generating test data  
+
+---
+
+Project implemented in MSSQL Server language
